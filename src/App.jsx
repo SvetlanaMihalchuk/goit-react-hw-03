@@ -3,22 +3,23 @@ import './App.css'
 import ContactList from './components/ContactList/ContactList';
 import SearchBox from './components/SearchBox/SearchBox';
 import ContactForm from './components/ContactForm/ContactForm';
+import contactsAll from "./contactsAll.json"
 
 const LOCAL_STORAGE_KEY = "contactsAll";
 
 function App() {
   const [contacts, setContacts] = useState(() => {
     const savedContacts = localStorage.getItem(LOCAL_STORAGE_KEY);
-    return savedContacts ? JSON.parse(savedContacts) : [];
+    return savedContacts ? JSON.parse(savedContacts) : contactsAll;
   }
   )
   
   const [filter, setFilter] = useState("");
 
    useEffect(() => {
-     if (contacts.length > 0) {
+    
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(contacts));
-  }
+  
    }, [contacts]);
   
   const handleAddNewContact = (newContact) => {
